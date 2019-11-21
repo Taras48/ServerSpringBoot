@@ -18,7 +18,7 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    //@Qualifier("userServiceImpl")
+    @Qualifier("userServiceImpl")
     @Autowired
     private UserDetailsService userDetailsService;
 
@@ -63,7 +63,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                 .antMatchers("/login").anonymous()
-                .antMatchers("/admin/**").hasAuthority("admin")
+                .antMatchers("/admin/**").permitAll()//.hasAuthority("admin")
                 .antMatchers("/user").hasAnyAuthority("admin", "user")
                 .anyRequest().authenticated()
                 .and()
