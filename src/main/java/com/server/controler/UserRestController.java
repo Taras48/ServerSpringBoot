@@ -28,17 +28,17 @@ public class UserRestController {
     }
 
     @PostMapping(value = "/add")
-    public void postAdd(@RequestBody User user,String role) {
-        user.setRoles(roleService.findAllByRole(role));
+    public void postAdd(@RequestBody User user) {
+        //user.setRoles(roleService.findAllByRole(role));
         userService.saveUser(user);
     }
 
     @PutMapping(value = "/update")
-    public void putUpdateUser(@RequestBody User user,String role) {
+    public void putUpdateUser(@RequestBody User user) {
         User upUser = userService.getUserById(user.getId());
         upUser.setName(user.getName());
         upUser.setPassword(user.getPassword());
-        upUser.setRoles(roleService.findAllByRole(role));
+       // upUser.getRoles().add(roleService.findAllByRole(user.getRoles()));
         upUser.setMessage(user.getMessage());
         userService.updateUser(upUser);
     }

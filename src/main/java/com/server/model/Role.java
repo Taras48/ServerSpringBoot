@@ -1,14 +1,17 @@
 package com.server.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
 @Table(name = "role")
-public class Role implements GrantedAuthority {
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class Role implements Serializable,GrantedAuthority {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -23,10 +26,10 @@ public class Role implements GrantedAuthority {
     public Role() {
     }
 
-    public Role(String role, Set<User> user) {
+   /* public Role(String role, Set<User> user) {
         this.role = role;
         this.user = user;
-    }
+    }*/
 
     public Role(String role) {
         this.role = role;
@@ -57,4 +60,5 @@ public class Role implements GrantedAuthority {
     public String getAuthority() {
         return this.role;
     }
+
 }

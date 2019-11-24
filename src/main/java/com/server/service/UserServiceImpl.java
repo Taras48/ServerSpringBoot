@@ -20,7 +20,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
 
     @Autowired
-    public UserServiceImpl(UserRepository repository,PasswordEncoder passwordEncoder) {
+    public UserServiceImpl(UserRepository repository, PasswordEncoder passwordEncoder) {
         this.repository = repository;
         this.passwordEncoder = passwordEncoder;
     }
@@ -28,7 +28,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String name) throws UsernameNotFoundException {
         User user = repository.getUserByName(name);
-        if (user == null){
+        if (user == null) {
             throw new UsernameNotFoundException("User name Not Found");
         }
         return user;
@@ -50,12 +50,12 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     public void updateUser(User user) {
         List<User> users = repository.findAll();
         int i = 0;
-        for(User check : users){
-            if(check.getName().equals(user.getName())){
+        for (User check : users) {
+            if (check.getName().equals(user.getName())) {
                 i++;
             }
         }
-        if(i < 2) {
+        if (i < 2) {
             repository.updateUser(user);
         }
 

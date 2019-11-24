@@ -1,6 +1,7 @@
 package com.server.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -12,7 +13,8 @@ import java.util.Set;
 
 @Entity
 @Table(name = "user")
-public class User  implements UserDetails {
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -77,9 +79,8 @@ public class User  implements UserDetails {
         this.roles = roles;
     }
 
-    public void setRoles(Role role) {
-        roles.add(role);
-    }
+    /*public void setRoles(Role role) {
+        roles.add(role);    }*/
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
