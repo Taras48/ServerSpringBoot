@@ -34,6 +34,14 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         return user;
     }
 
+    public User getUserByName(String name) throws UsernameNotFoundException {
+        User user = repository.getUserByName(name);
+        if (user == null) {
+            throw new UsernameNotFoundException("User name Not Found");
+        }
+        return user;
+    }
+
 
     @Override
     public User getUserById(Long id) {
@@ -42,8 +50,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Override
     public void saveUser(User user) {
-   //     user.setPassword(passwordEncoder.encode(user.getPassword()));
-        repository.saveUser(user);
+          repository.saveUser(user);
     }
 
     @Override
