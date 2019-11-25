@@ -1,6 +1,7 @@
 package com.server.controler;
 
 import com.server.model.JsonUser;
+import com.server.model.Role;
 import com.server.model.User;
 import com.server.service.RoleService;
 import com.server.service.UserService;
@@ -8,7 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/admin")
@@ -24,18 +27,18 @@ public class UserRestController {
     }
 
     @GetMapping(value = "/all")
-    public @ResponseBody List<User> getAllUsers() {
+    public @ResponseBody
+    List<User> getAllUsers() {
         List<User> list = userService.findAll();
         return list;
     }
 
     @PostMapping(value = "/add")
-    public void postAdd( @RequestBody JsonUser jsonUser) {
-
-        System.out.println(jsonUser.getName());
-        System.out.println(jsonUser.getName());
-        //user.setRoles(roleService.findAllByRole(role));
-       // userService.saveUser(jsonUser);
+    public void postAdd(@RequestBody User user) {
+        Set<Role> roles = new HashSet<>();
+        roles.add(roleService.findAllByRole(user.getRoles().iterator().next().getRole()));
+        user.setRoles(roles);
+        userService.saveUser(user);
     }
 
 
@@ -44,7 +47,7 @@ public class UserRestController {
         User upUser = userService.getUserById(user.getId());
         upUser.setName(user.getName());
         upUser.setPassword(user.getPassword());
-       // upUser.getRoles().add(roleService.findAllByRole(user.getRoles()));
+        // upUser.getRoles().add(roleService.findAllByRole(user.getRoles()));
         upUser.setMessage(user.getMessage());
         userService.updateUser(upUser);
     }

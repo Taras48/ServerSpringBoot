@@ -1,6 +1,7 @@
 package com.server.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -39,6 +40,13 @@ public class User implements UserDetails {
         this.roles = roles;
     }
 
+    public User(Long id, String name, String password, String message, Set<Role> roles) {
+        this.id = id;
+        this.name = name;
+        this.password = password;
+        this.message = message;
+        this.roles = roles;
+    }
 
 
     public Long getId() {
@@ -81,31 +89,38 @@ public class User implements UserDetails {
         this.roles = roles;
     }
 
+
+    @JsonIgnore
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return roles;
     }
 
+    @JsonIgnore
     @Override
     public String getUsername() {
         return name;
     }
 
+    @JsonIgnore
     @Override
     public boolean isAccountNonExpired() {
         return true;
     }
 
+    @JsonIgnore
     @Override
     public boolean isAccountNonLocked() {
         return true;
     }
 
+    @JsonIgnore
     @Override
     public boolean isCredentialsNonExpired() {
         return true;
     }
 
+    @JsonIgnore
     @Override
     public boolean isEnabled() {
         return true;
