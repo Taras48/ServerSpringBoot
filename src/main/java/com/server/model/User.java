@@ -39,6 +39,8 @@ public class User implements UserDetails {
         this.roles = roles;
     }
 
+
+
     public Long getId() {
         return id;
     }
@@ -78,9 +80,6 @@ public class User implements UserDetails {
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
     }
-
-    /*public void setRoles(Role role) {
-        roles.add(role);    }*/
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

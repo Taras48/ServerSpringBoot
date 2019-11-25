@@ -1,11 +1,13 @@
 package com.server.controler;
 
+import com.server.model.JsonUser;
 import com.server.model.User;
 import com.server.service.RoleService;
 import com.server.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @RestController
@@ -29,9 +31,12 @@ public class UserRestController {
 
     @PostMapping(value = "/add")
     public void postAdd(@RequestBody User user) {
+        System.out.println(user.getName());
+        System.out.println(user.getName());
         //user.setRoles(roleService.findAllByRole(role));
         userService.saveUser(user);
     }
+
 
     @PutMapping(value = "/update")
     public void putUpdateUser(@RequestBody User user) {

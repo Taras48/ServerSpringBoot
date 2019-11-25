@@ -11,7 +11,7 @@ import java.util.Set;
 @Entity
 @Table(name = "role")
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Role implements Serializable,GrantedAuthority {
+public class Role implements GrantedAuthority {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -26,10 +26,10 @@ public class Role implements Serializable,GrantedAuthority {
     public Role() {
     }
 
-   /* public Role(String role, Set<User> user) {
+    public Role(String role, Set<User> user) {
         this.role = role;
         this.user = user;
-    }*/
+    }
 
     public Role(String role) {
         this.role = role;
