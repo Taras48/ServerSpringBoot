@@ -67,6 +67,6 @@ public class UserRestController {
 
     @GetMapping(value = "/{name}")
     public User getUserByName(@PathVariable("name") String name) {
-        return userService.getUserByName(name);
+        return userService.getUserByName(name);//доелать
     }
 }
