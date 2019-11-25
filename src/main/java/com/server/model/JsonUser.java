@@ -1,11 +1,14 @@
 package com.server.model;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class JsonUser {
     private Long id;
     private String name;
     private String password;
     private String message;
-    private String role;
+    private Set<Role> roles = new HashSet<Role>();
 
     public Long getId() {
         return id;
@@ -39,12 +42,12 @@ public class JsonUser {
         this.message = message;
     }
 
-    public String getRole() {
-        return role;
+    public Set<Role> getRoles() {
+        return roles;
     }
 
-    public void setRole(String role) {
-        this.role = role;
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
     }
 
     @Override
@@ -54,7 +57,6 @@ public class JsonUser {
                 ", name='" + name + '\'' +
                 ", password='" + password + '\'' +
                 ", message='" + message + '\'' +
-                ", role='" + role + '\'' +
-                '}';
+                "";
     }
 }

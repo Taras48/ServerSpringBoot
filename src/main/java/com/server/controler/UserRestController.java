@@ -30,11 +30,12 @@ public class UserRestController {
     }
 
     @PostMapping(value = "/add")
-    public void postAdd(@RequestBody User user) {
-        System.out.println(user.getName());
-        System.out.println(user.getName());
+    public void postAdd( @RequestBody JsonUser jsonUser) {
+
+        System.out.println(jsonUser.getName());
+        System.out.println(jsonUser.getName());
         //user.setRoles(roleService.findAllByRole(role));
-        userService.saveUser(user);
+       // userService.saveUser(jsonUser);
     }
 
 
