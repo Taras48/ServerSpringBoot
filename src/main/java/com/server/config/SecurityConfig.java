@@ -51,29 +51,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .withUser("admin").password("$2a$10$ziJKCTIBnsu6SELx0WsFmuiDkSiqHEz.AoVckNEHIE9Kq6Jdkvjj.").roles("admin");
     }
 
-    /*  @Override
-      public void configure(WebSecurity web) throws Exception {
-          web
-                  .ignoring()
-                  .antMatchers(  "/css/**","/js/**");
-      }
-  */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/login").permitAll()//.anonymous()
                 .antMatchers("/admin/**").permitAll()//.hasAuthority("admin")
-                .antMatchers("/user").hasAnyAuthority("admin", "user")
                 .anyRequest().authenticated()
-                .and()
-                .formLogin()
-                .loginPage("/login")
-                // .successHandler(myAuthenticationSuccessHandler)
-                .usernameParameter("name")
-                .passwordParameter("password")
-                .and()
-                .logout()
                 .and()
                 .csrf()
                 .disable();

@@ -65,8 +65,8 @@ public class UserRestController {
         return userService.getUserById(id);
     }
 
-    @GetMapping(value = "/{name}")
-    public User getUserByName(@PathVariable("name") String name) {
-        return userService.getUserByName(name);//доелать
+    @PostMapping
+    public User getUserByName(@RequestBody User user) {
+        return userService.getUserByName(user.getName());//доелать
     }
 }
