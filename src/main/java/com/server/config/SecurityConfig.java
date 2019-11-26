@@ -25,10 +25,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    /*
-    @Autowired
-    private AuthenticationSuccessHandler myAuthenticationSuccessHandler;
-    */
 
     @Bean
     public PasswordEncoder getPasswordEncoder() {
@@ -37,17 +33,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-
         auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder);
-
     }
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-
         auth.inMemoryAuthentication()
-                .withUser("user").password("$2a$10$ziJKCTIBnsu6SELx0WsFmuiDkSiqHEz.AoVckNEHIE9Kq6Jdkvjj.").roles("admin")
-                .and()
                 .withUser("admin").password("$2a$10$ziJKCTIBnsu6SELx0WsFmuiDkSiqHEz.AoVckNEHIE9Kq6Jdkvjj.").roles("admin");
     }
 
@@ -55,7 +46,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/admin/**").permitAll()//.hasAuthority("admin")
+                .antMatchers("/admin/**").permitAll()//.hasAuthority("admin")//исправить
                 .anyRequest().authenticated()
                 .and()
                 .csrf()

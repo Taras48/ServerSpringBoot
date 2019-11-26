@@ -1,6 +1,5 @@
 package com.server.controler;
 
-import com.server.model.JsonUser;
 import com.server.model.Role;
 import com.server.model.User;
 import com.server.service.RoleService;
@@ -8,7 +7,6 @@ import com.server.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
