@@ -16,13 +16,13 @@ import java.util.List;
 public class UserServiceImpl implements UserService, UserDetailsService {
 
     private UserRepository repository;
-    private PasswordEncoder passwordEncoder;
+  //  private PasswordEncoder passwordEncoder;
 
 
     @Autowired
-    public UserServiceImpl(UserRepository repository, PasswordEncoder passwordEncoder) {
+    public UserServiceImpl(UserRepository repository/*, PasswordEncoder passwordEncoder*/) {
         this.repository = repository;
-        this.passwordEncoder = passwordEncoder;
+      //  this.passwordEncoder = passwordEncoder;
     }
 
     @Override
